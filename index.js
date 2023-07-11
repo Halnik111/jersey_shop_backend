@@ -28,6 +28,10 @@ app.use(cors(corsOptions));
 app.use("/products", productRoutes);
 app.use("/inventory", productInventoryRoutes);
 
+app.get('/', (req, res) => {
+    res.send('test');
+})
+
 app.listen(process.env.PORT || 8080, () => {
     connect();
     console.log('Connected!');
