@@ -13,10 +13,11 @@ export const addProduct = async (req, res) => {
 
 export const getProduct = async (req, res) => {
     try {
-
+        const product = await Product.findById(req.params.id);
+        res.status(200).json(product);
     }
     catch (err) {
-
+        res.status(404).json(err.message);
     }
 }
 

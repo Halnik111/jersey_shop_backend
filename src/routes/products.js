@@ -7,7 +7,6 @@ const router = express.Router();
 router.get("/find/:id", getProduct);
 //get all products of specific category
 router.get("/category/:id", getAllCategoryProducts);
-
 //add product
 router.post("/add", addProduct);
 
