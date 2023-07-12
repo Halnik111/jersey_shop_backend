@@ -29,7 +29,7 @@ app.use("/products", productRoutes);
 app.use("/inventory", productInventoryRoutes);
 
 app.get('/', (req, res) => {
-    res.send('test');
+    res.send('Working');
 })
 
 app.listen(process.env.PORT || 8080, () => {
