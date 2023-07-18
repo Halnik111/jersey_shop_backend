@@ -1,4 +1,5 @@
 import Product from "../models/Product.js";
+import ProductInventory from "../models/ProductInventory.js";
 
 export const addProduct = async (req, res) => {
     try {
@@ -23,7 +24,17 @@ export const getProduct = async (req, res) => {
 
 export const getAllCategoryProducts = async (req, res) => {
     try {
-        const products = await Product.find({category: req.params.category});
+        const products = await Product.aggregate([
+            {
+                $match: {category: req.params.category}
+            },
+            {
+                $lookup: {
+                    from: ProductInventory.collection.name,
+                    localField: '_id',
+                    foreignField: "productID",
+                    as: "stock"
+                }}])
         res.status(200).json(products);
     }
     catch (err) {

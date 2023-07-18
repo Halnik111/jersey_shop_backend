@@ -32,6 +32,11 @@ const productSchema = new mongoose.Schema({
         type: Decimal128,
         required: true,
     },
+    available: {
+        type: Boolean,
+        required: true,
+        default: true,
+    },
     },
     {timestamps: true}
 );

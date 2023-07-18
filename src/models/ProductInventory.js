@@ -1,15 +1,17 @@
 import mongoose from "mongoose";
+import {ObjectId} from "mongodb";
 
 const inventorySchema = new mongoose.Schema({
     productID: {
-        type: String,
+        type: ObjectId,
+        required: true,
+        unique: true
+    },
+    inventory: {
+        type: Object,
         required: true,
     },
-    size: {
-        type: String,
-        required: true,
-    },
-    quantity: {
+    total: {
         type: Number,
         required: true,
     },
@@ -17,4 +19,4 @@ const inventorySchema = new mongoose.Schema({
     {timestamps: true},
 );
 
-export default mongoose.model('Product', inventorySchema);
+export default mongoose.model('ProductInventory', inventorySchema);
