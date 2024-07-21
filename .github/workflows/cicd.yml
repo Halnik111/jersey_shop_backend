@@ -4,11 +4,28 @@ on:
   push:
     branches:
       - master
-    
+      
+permissions: 
+  id-token: write
+  contents: read
+
 jobs: 
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Azure login
+        uses: azure/login@v2
+        with: 
+          client-id: ${{}}
+          tenant-id: ${{}}
+          subscription-id: ${{}}
+          
+      - name: Azure CLI script
+        uses: azure/cli@v2
+        with: 
+          azcliversion: latest
+          inlineScript: |
+            az account show
       - name: Checkout Source
         uses: actions/checkout@v4
       - name: Setup Node.js version
